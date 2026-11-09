@@ -1,0 +1,5 @@
+name: final-project
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
