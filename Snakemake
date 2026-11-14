@@ -1,3 +1,0 @@
-Rule:
-input: AMRSeq.fasta
-output: Results/AMRSeqResults 

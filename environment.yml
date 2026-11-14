@@ -1,5 +1,17 @@
-name: final-project
+name: amrfinder
 channels:
   - conda-forge
+  - bioconda
 dependencies:
   - python=3.12
+  - pandas=2.3.3
+  - snakemake=9.23.1
+  - r-base
+  - r-dplyr
+  - r-stringr
+  - matplotlib
+  - matplotlib-base
+  - matplotlib-inline
+  - r-base
+  - r-ggplot2
+  - r-dplyr
