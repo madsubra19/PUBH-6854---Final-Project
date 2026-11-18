@@ -5,7 +5,14 @@ library(ggplot2)
 
 
 # Import of Data
-AMR_Data <- read.table(snakemake@input[["AMRFinder_Data"]], header = TRUE, sep = "\t")
+AMR_Data <- read.table(
+  snakemake@input[["AMRFinder_Data"]],
+  header = TRUE,
+  sep = "\t",
+  quote = ""
+)
+
+AMR_Data <- read.table(snakemake@input[["AMRFinder_Data"]], header = TRUE, sep = "\t", quote = "")
 X <- AMR_Data$Element.symbol
 Y <- AMR_Data$Subclass
 Z <- AMR_Data$Clas
@@ -39,4 +46,4 @@ AMR_Heat
 ggsave(snakemake@output[["Heat_Map"]], plot = AMR_Heat)
 
 # Relocate the Visualization Summary (PDF)
-file.rename("Rplots.pdf", "Results/{fasta}_plots.pdf")
+file.rename("Rplots.pdf", snakemake@output[["pdf"]])

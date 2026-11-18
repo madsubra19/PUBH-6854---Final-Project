@@ -1,18 +1,20 @@
 # Snakefile for pulling AMR and visualizing data from a bacterial sequence
 
+Data = glob_wildcards("Data/{fasta}.fasta").fasta
+
 rule all:
     input:
-        "Results/AMRFinder_Output.tsv",
-        "Results/AMR_R_HeatMap.png",
-        "Results/AMR_R_Bar.png",
-        "Results/AMR_Plots.pdf"
+        expand("Results/{fasta}_Output.tsv", fasta = Data),
+        expand("Results/{fasta}_R_HeatMap.png", fasta = Data),
+        expand("Results/{fasta}_R_Bar.png", fasta = Data),
+        expand("Results/{fasta}_plots.pdf", fasta = Data)
 
 # Importing sequence data through AMRFinder program
 rule get_data: 
     input:
-        "Data/AMRSeq.fasta"
+        "Data/{fasta}.fasta"
     output: 
-        "Results/AMRFinder_Output.tsv"
+        "Results/{fasta}_Output.tsv"
     shell:
         """
         amrfinder -n {input} -o {output}
@@ -22,10 +24,10 @@ rule get_data:
 # Creating visualization of identified AMR and related drug resistances
 rule data analysis:
     input:
-        AMRFinder_Data = "Results/AMRFinder_Output.tsv"
+        AMRFinder_Data = "Results/{fasta}_Output.tsv"
     output: 
-        Heat_Map = "Results/AMR_R_HeatMap.png",
-        Bar = "Results/AMR_R_Bar.png",
-        pdf = "Results/AMR_Plots.pdf"
+        Heat_Map = "Results/{fasta}_R_HeatMap.png",
+        Bar = "Results/{fasta}_R_Bar.png",
+        pdf = "Results/{fasta}_plots.pdf"
     script:
         "Scripts/RScript_Visualization.R"
