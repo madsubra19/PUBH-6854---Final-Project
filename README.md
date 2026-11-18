@@ -33,7 +33,7 @@ amrfinder -u # updates the AMRFinder database
 
 ```
 
-## How to run AMRFinder
+## How to run the AMR program
 
 **Establish your dependencies for AMRFinder, Snakemake, & R Visualization packages**
 ```shell
